@@ -30,7 +30,17 @@ public class LoadSceneManager : MonoBehaviour
 
     public async void OnGoToNextLevel()
     {
-        await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        MenuController.Instance.OnCheckBounties();
+        try
+        {
+            await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+            MenuController.Instance.OnCheckBounties();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Game End");
+            await SceneManager.LoadSceneAsync(0);
+
+        }
+
     }
 }

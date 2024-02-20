@@ -9,7 +9,7 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Box,BoxCoin
+    Box,BoxCoin,Coin
 }
 public class Item : MonoBehaviour
 {
@@ -29,6 +29,10 @@ public class Item : MonoBehaviour
                 if(isEmpty) return;
                 isEmpty = true;
                 CoinSpawningAsync();
+               break; 
+            case ItemType.Coin:
+                MenuController.Instance.OnCoinPlus();
+                Destroy(this.gameObject);
                 break;
         }
     }
